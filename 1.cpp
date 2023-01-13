@@ -585,7 +585,7 @@ void ChangeCharToDigit(std::string& s, std::string const& toReplace, std::string
 
 int main()
 {
-	std::string String = "test12tbakerhtiqotutwty";
+	std::string String = "test12tbakerhtiqotutwtyIUYT";
 	std::string Soundex = "";
 	//std::getline(std::cin, String);
 	Soundex += String.front();
