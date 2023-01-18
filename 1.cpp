@@ -633,7 +633,10 @@ int main()
 	ChangeCharToDigit(Buffer, "r", "6");
 
 	std::cout << Buffer << std::endl;
-	std::cout << (Soundex += Buffer) << std::endl;
 
+
+	std::cout << (Soundex += Buffer) << std::endl;
+	//Buffer.insert('s', 1, 2);
+	std::cout << Buffer << std::endl;
 
 }
