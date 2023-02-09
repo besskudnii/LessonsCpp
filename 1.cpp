@@ -592,8 +592,8 @@ int main()
 	{
 	Soundex += String.front();
 	}
-	std::string Buffer;
-	Buffer = String.erase(0, 1);
+	//std::string Buffer;
+	//Buffer = String.erase(0, 1);
 	std::cout << String << std::endl;
 
 	for (size_t i = 0; i != String.size(); ++i) // перебираем все символы и удаляем буквы a, e, h, i, o, u, w и y
