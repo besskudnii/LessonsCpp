@@ -650,21 +650,23 @@ int main()
 	}
 
 
-	if (String.size() > 4)
+	if (String.size() > 3)
 	{
-		while (String.size() > 4)
+		while (String.size() > 3)
 		{
-			// Пока строка больше 4 символов
+			// Пока строка больше 3 символов
 			String.pop_back();  // удаляем последний элемент
 		}
 	}
 	else
-		while (String.size() <= 4)
+		while (String.size() <= 3)
 	{
-		// Пока строка меньше 4 символов
+		// Пока строка меньше 3 символов
 		String.push_back('0');  // добавляем 0
 	}
+	Soundex += String.front();
 
+	std::cout << Soundex << std::endl;
 	//for (size_t i = 0; i+1 != String.size(); ++i) //  
 	//{
 	//	if (String[i+1] == String[i])
