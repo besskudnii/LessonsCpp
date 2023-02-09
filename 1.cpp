@@ -541,14 +541,14 @@ r: 6
 аmmonium → ammnm → a5555 → a5 → a500.
 implementation → implmnttn → i51455335 → i514535 → i514.*/
 
-void DeleteCharFromString(std::string& text, const char& var)
-{
-	for (int i = 0; i <= text.size(); i++)
-	{
-		if (text[i] == var) { text.erase(text.begin() + i); }
-	}
-	
-}
+//void DeleteCharFromString(std::string& text, const char& var)
+//{
+//	for (int i = 0; i <= text.size(); i++)
+//	{
+//		if (text[i] == var) { text.erase(text.begin() + i); }
+//	}
+//	
+//}
 
 //void ChangeCharToDigit(std::string& text, const int& var)
 //{
@@ -559,28 +559,28 @@ void DeleteCharFromString(std::string& text, const char& var)
 //
 //}
 
-void ChangeCharToDigit(std::string& s, std::string const& toReplace, std::string const& replaceWith)
-{
-	std::string buffer;
-	std::size_t position = 0;
-	std::size_t prevPos;
-
-	// Reserves rough estimate of final size of string.
-	buffer.reserve(s.size());
-
-	while (true) {
-		prevPos = position;
-		position = s.find(toReplace, position);
-		if (position == std::string::npos)
-			break;
-		buffer.append(s, prevPos, position - prevPos);
-		buffer += replaceWith;
-		position += toReplace.size();
-	}
-
-	buffer.append(s, prevPos, s.size() - prevPos);
-	s.swap(buffer);
-}
+//void ChangeCharToDigit(std::string& s, std::string const& toReplace, std::string const& replaceWith)
+//{
+//	std::string buffer;
+//	std::size_t position = 0;
+//	std::size_t prevPos;
+//
+//	// Reserves rough estimate of final size of string.
+//	buffer.reserve(s.size());
+//
+//	while (true) {
+//		prevPos = position;
+//		position = s.find(toReplace, position);
+//		if (position == std::string::npos)
+//			break;
+//		buffer.append(s, prevPos, position - prevPos);
+//		buffer += replaceWith;
+//		position += toReplace.size();
+//	}
+//
+//	buffer.append(s, prevPos, s.size() - prevPos);
+//	s.swap(buffer);
+//}
 
 
 int main()
@@ -641,14 +641,40 @@ int main()
 	}
 	std::cout << std::endl;
 
-	for (size_t i = 0; i < (String.size() - 1); ++i) //  
-	{
-		if ((String[i] == String[i+1]))
+	for (size_t i = 0; (i + 1) < size(String); ++i) {
+		if (String[i] == String[i + 1]) 
 		{
+			std::cout << "Duplicate value: " << String[i] << "\n";
 			String.erase(i, 1);
 		}
-		std::cout << String[i];
 	}
+
+
+	if (String.size() > 4)
+	{
+		while (String.size() > 4)
+		{
+			// Пока строка больше 4 символов
+			String.pop_back();  // удаляем последний элемент
+		}
+	}
+	else
+		while (String.size() <= 4)
+	{
+		// Пока строка меньше 4 символов
+		String.push_back('0');  // добавляем 0
+	}
+
+	//for (size_t i = 0; i+1 != String.size(); ++i) //  
+	//{
+	//	if (String[i+1] == String[i])
+	//	{
+	//		
+	//		std::cout << String[i]; 
+	//		//String.erase(i, 1);
+	//	}
+	//	std::cout << String[i];
+	//}
 
 	//std::cout << (Soundex += Buffer) << std::endl;
 	////Buffer.insert('s', 1, 2);
