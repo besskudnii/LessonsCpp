@@ -585,58 +585,73 @@ void ChangeCharToDigit(std::string& s, std::string const& toReplace, std::string
 
 int main()
 {
-	std::string String = "test12tbakerhtiqotutwtyIUYT";
+	std::string String = "test12tbakerhtiqotutwty";
 	std::string Soundex = "";
 	//std::getline(std::cin, String);
+	if (!String.empty()) 		// не пустая и можно работать
+	{
 	Soundex += String.front();
-	
+	}
 	std::string Buffer;
 	Buffer = String.erase(0, 1);
-	
-	DeleteCharFromString(Buffer, 'a');
-	DeleteCharFromString(Buffer, 'e');
-	DeleteCharFromString(Buffer, 'h');
-	DeleteCharFromString(Buffer, 'i');
-	DeleteCharFromString(Buffer, 'o');
-	DeleteCharFromString(Buffer, 'u');
-	DeleteCharFromString(Buffer, 'w');
-	DeleteCharFromString(Buffer, 'y');
+	std::cout << String << std::endl;
 
-//b, f, p, v: 1
+	for (size_t i = 0; i != String.size(); ++i) // перебираем все символы и удаляем буквы a, e, h, i, o, u, w и y
+	{
+		if ((String[i] == 'a') || (String[i] == 'e') || (String[i] == 'h') || (String[i] == 'i') || (String[i] == 'o') || (String[i] == 'u') || (String[i] == 'w') || (String[i] == 'y'))
+		{ String.erase(i, 1); }
+		std::cout << String[i];
+	}
+	std::cout << std::endl;
+
+	for (size_t i = 0; i != String.size(); ++i) 
+// меняем буквы на цифры
+// b, f, p, v: 1
 //c, g, j, k, q, s, x, z: 2
 //d, t: 3
 //l: 4
 //m, n: 5
 //r: 6
-	ChangeCharToDigit(Buffer, "b", "1");
-	ChangeCharToDigit(Buffer, "f", "1");
-	ChangeCharToDigit(Buffer, "p", "1");
-	ChangeCharToDigit(Buffer, "v", "1");
-	
-	ChangeCharToDigit(Buffer, "c", "2");
-	ChangeCharToDigit(Buffer, "g", "2");
-	ChangeCharToDigit(Buffer, "j", "2");
-	ChangeCharToDigit(Buffer, "k", "2");
-	ChangeCharToDigit(Buffer, "q", "2");
-	ChangeCharToDigit(Buffer, "s", "2");
-	ChangeCharToDigit(Buffer, "x", "2");
-	ChangeCharToDigit(Buffer, "z", "2");
+	{
+		if ((String[i] == 'b') || (String[i] == 'f') || (String[i] == 'p') || (String[i] == 'v'))
+		{
+			String.at(i) = '1';
+		}
+		else if((String[i] == 'c') || (String[i] == 'g') || (String[i] == 'j') || (String[i] == 'k') || (String[i] == 'q') || (String[i] == 's') || (String[i] == 'x') || (String[i] == 'z'))
+		{
+			String.at(i) = '2';
+		}
+		else if ((String[i] == 'd') || (String[i] == 't'))
+		{
+			String.at(i) = '3';
+		}
+		else if (String[i] == 'l')
+		{
+			String.at(i) = '4';
+		}
+		else if ((String[i] == 'm') || (String[i] == 'n'))
+		{
+			String.at(i) = '5';
+		}
+		else if (String[i] == 'r')
+		{
+			String.at(i) = '6';
+		}
+		std::cout << String[i];
+	}
+	std::cout << std::endl;
 
-	ChangeCharToDigit(Buffer, "d", "3");
-	ChangeCharToDigit(Buffer, "t", "3");
+	for (size_t i = 0; i < (String.size() - 1); ++i) //  
+	{
+		if ((String[i] == String[i+1]))
+		{
+			String.erase(i, 1);
+		}
+		std::cout << String[i];
+	}
 
-	ChangeCharToDigit(Buffer, "l", "4");
-
-	ChangeCharToDigit(Buffer, "m", "5");
-	ChangeCharToDigit(Buffer, "n", "5");
-
-	ChangeCharToDigit(Buffer, "r", "6");
-
-	std::cout << Buffer << std::endl;
-
-
-	std::cout << (Soundex += Buffer) << std::endl;
-	//Buffer.insert('s', 1, 2);
-	std::cout << Buffer << std::endl;
+	//std::cout << (Soundex += Buffer) << std::endl;
+	////Buffer.insert('s', 1, 2);
+	//std::cout << Buffer << std::endl;
 
 }
