@@ -1,6 +1,7 @@
 ﻿#include <iostream>
 #include <string>
 #include <vector>
+#include <algorithm>
 
 /*шаблон функции меняет любые типы местамги*/
 
@@ -541,99 +542,65 @@ r: 6
 аmmonium → ammnm → a5555 → a5 → a500.
 implementation → implmnttn → i51455335 → i514535 → i514.*/
 
-void DeleteCharFromString(std::string& text, const char& var)
+void DeleteCharFromString(std::string& text, const std::string& vars)
 {
-	for (int i = 0; i <= text.size(); i++)
+	for (char ch : vars)
 	{
-		if (text[i] == var) { text.erase(text.begin() + i); }
+		text.erase(std::remove(text.begin(), text.end(), ch), text.end());
 	}
-	
 }
 
-//void ChangeCharToDigit(std::string& text, const int& var)
-//{
-//	for (int i = 0; i <= text.size(); i++)
-//	{
-//		if (text[i] == var) { text.replace(i, var); }
-//	}
-//
-//}
-
-void ChangeCharToDigit(std::string& s, std::string const& toReplace, std::string const& replaceWith)
+void ChangeCharToDigit(std::string& str, const std::string& chars, char number)
 {
-	std::string buffer;
-	std::size_t position = 0;
-	std::size_t prevPos;
-
-	// Reserves rough estimate of final size of string.
-	buffer.reserve(s.size());
-
-	while (true) {
-		prevPos = position;
-		position = s.find(toReplace, position);
-		if (position == std::string::npos)
-			break;
-		buffer.append(s, prevPos, position - prevPos);
-		buffer += replaceWith;
-		position += toReplace.size();
+	for (auto it = str.begin(); it != str.end(); ++it)
+	{
+		if (chars.find(*it) != std::string::npos)
+		{
+			*it = number;
+		}
 	}
-
-	buffer.append(s, prevPos, s.size() - prevPos);
-	s.swap(buffer);
 }
 
+void RemoveDublicateDigits(std::string& str)
+{
+	auto eraseIt = std::unique(str.begin(), str.end(), [](char left, char right)
+	{
+		return left == right && (left == '1' || left == '2' || left == '3' || left == '4' || left == '5' || left == '6'); 
+	});
+    str.erase(eraseIt, str.end());
+}
 
 int main()
 {
 	std::string String = "test12tbakerhtiqotutwty";
-	std::string Soundex = "";
-	//std::getline(std::cin, String);
+	std::string Soundex;
+
+	if (String.empty())
+		return;
+
 	Soundex += String.front();
 	
-	std::string Buffer;
-	Buffer = String.erase(0, 1);
+	std::string& Buffer = String;
+	Buffer.erase(0, 1);
 	
-	DeleteCharFromString(Buffer, 'a');
-	DeleteCharFromString(Buffer, 'e');
-	DeleteCharFromString(Buffer, 'h');
-	DeleteCharFromString(Buffer, 'i');
-	DeleteCharFromString(Buffer, 'o');
-	DeleteCharFromString(Buffer, 'u');
-	DeleteCharFromString(Buffer, 'w');
-	DeleteCharFromString(Buffer, 'y');
+	DeleteCharFromString(Buffer, "aehiouwy");
 
-//b, f, p, v: 1
-//c, g, j, k, q, s, x, z: 2
-//d, t: 3
-//l: 4
-//m, n: 5
-//r: 6
-	ChangeCharToDigit(Buffer, "b", "1");
-	ChangeCharToDigit(Buffer, "f", "1");
-	ChangeCharToDigit(Buffer, "p", "1");
-	ChangeCharToDigit(Buffer, "v", "1");
-	
-	ChangeCharToDigit(Buffer, "c", "2");
-	ChangeCharToDigit(Buffer, "g", "2");
-	ChangeCharToDigit(Buffer, "j", "2");
-	ChangeCharToDigit(Buffer, "k", "2");
-	ChangeCharToDigit(Buffer, "q", "2");
-	ChangeCharToDigit(Buffer, "s", "2");
-	ChangeCharToDigit(Buffer, "x", "2");
-	ChangeCharToDigit(Buffer, "z", "2");
+	ChangeCharToDigit(Buffer, "bfpv", '1');
+	ChangeCharToDigit(Buffer, "cgjkqsxz", '2');
+	ChangeCharToDigit(Buffer, "dt", '3');
+	ChangeCharToDigit(Buffer, "l", '4');
+	ChangeCharToDigit(Buffer, "mn", '5');
+	ChangeCharToDigit(Buffer, "r", '6');
 
-	ChangeCharToDigit(Buffer, "d", "3");
-	ChangeCharToDigit(Buffer, "t", "3");
+	RemoveDublicateDigits(Buffer);
 
-	ChangeCharToDigit(Buffer, "l", "4");
+	Buffer.erase(4);
+	for (int i = Buffer.size(); i < 4; ++i)
+	{
+		Buffer.push_back('0');
+	}
 
-	ChangeCharToDigit(Buffer, "m", "5");
-	ChangeCharToDigit(Buffer, "n", "5");
+	Soundex += Buffer;
 
-	ChangeCharToDigit(Buffer, "r", "6");
-
-	std::cout << Buffer << std::endl;
-	std::cout << (Soundex += Buffer) << std::endl;
-
-
+	std::cout << Soundex << std::endl;
 }
