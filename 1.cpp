@@ -1,6 +1,7 @@
 ﻿#include <iostream>
 #include <string>
 #include <vector>
+#include <algorithm>
 
 /*шаблон функции меняет любые типы местамги*/
 
@@ -541,145 +542,65 @@ r: 6
 аmmonium → ammnm → a5555 → a5 → a500.
 implementation → implmnttn → i51455335 → i514535 → i514.*/
 
-//void DeleteCharFromString(std::string& text, const char& var)
-//{
-//	for (int i = 0; i <= text.size(); i++)
-//	{
-//		if (text[i] == var) { text.erase(text.begin() + i); }
-//	}
-//	
-//}
+void DeleteCharFromString(std::string& text, const std::string& vars)
+{
+	for (char ch : vars)
+	{
+		text.erase(std::remove(text.begin(), text.end(), ch), text.end());
+	}
+}
 
-//void ChangeCharToDigit(std::string& text, const int& var)
-//{
-//	for (int i = 0; i <= text.size(); i++)
-//	{
-//		if (text[i] == var) { text.replace(i, var); }
-//	}
-//
-//}
+void ChangeCharToDigit(std::string& str, const std::string& chars, char number)
+{
+	for (auto it = str.begin(); it != str.end(); ++it)
+	{
+		if (chars.find(*it) != std::string::npos)
+		{
+			*it = number;
+		}
+	}
+}
 
-//void ChangeCharToDigit(std::string& s, std::string const& toReplace, std::string const& replaceWith)
-//{
-//	std::string buffer;
-//	std::size_t position = 0;
-//	std::size_t prevPos;
-//
-//	// Reserves rough estimate of final size of string.
-//	buffer.reserve(s.size());
-//
-//	while (true) {
-//		prevPos = position;
-//		position = s.find(toReplace, position);
-//		if (position == std::string::npos)
-//			break;
-//		buffer.append(s, prevPos, position - prevPos);
-//		buffer += replaceWith;
-//		position += toReplace.size();
-//	}
-//
-//	buffer.append(s, prevPos, s.size() - prevPos);
-//	s.swap(buffer);
-//}
-
+void RemoveDublicateDigits(std::string& str)
+{
+	auto eraseIt = std::unique(str.begin(), str.end(), [](char left, char right)
+	{
+		return left == right && (left == '1' || left == '2' || left == '3' || left == '4' || left == '5' || left == '6'); 
+	});
+    str.erase(eraseIt, str.end());
+}
 
 int main()
 {
 	std::string String = "test12tbakerhtiqotutwty";
-	std::string Soundex = "";
-	//std::getline(std::cin, String);
-	if (!String.empty()) 		// не пустая и можно работать
-	{
+
+	std::string Soundex;
+
+	if (String.empty())
+		return;
+
 	Soundex += String.front();
-	}
-	//std::string Buffer;
-	//Buffer = String.erase(0, 1);
-	std::cout << String << std::endl;
+	
+	std::string& Buffer = String;
+	Buffer.erase(0, 1);
+	
+	DeleteCharFromString(Buffer, "aehiouwy");
 
-	for (size_t i = 0; i != String.size(); ++i) // перебираем все символы и удаляем буквы a, e, h, i, o, u, w и y
+	ChangeCharToDigit(Buffer, "bfpv", '1');
+	ChangeCharToDigit(Buffer, "cgjkqsxz", '2');
+	ChangeCharToDigit(Buffer, "dt", '3');
+	ChangeCharToDigit(Buffer, "l", '4');
+	ChangeCharToDigit(Buffer, "mn", '5');
+	ChangeCharToDigit(Buffer, "r", '6');
+
+	RemoveDublicateDigits(Buffer);
+
+	Buffer.erase(4);
+	for (int i = Buffer.size(); i < 4; ++i)
 	{
-		if ((String[i] == 'a') || (String[i] == 'e') || (String[i] == 'h') || (String[i] == 'i') || (String[i] == 'o') || (String[i] == 'u') || (String[i] == 'w') || (String[i] == 'y'))
-		{ String.erase(i, 1); }
-		std::cout << String[i];
-	}
-	std::cout << std::endl;
-
-	for (size_t i = 0; i != String.size(); ++i) 
-// меняем буквы на цифры
-// b, f, p, v: 1
-//c, g, j, k, q, s, x, z: 2
-//d, t: 3
-//l: 4
-//m, n: 5
-//r: 6
-	{
-		if ((String[i] == 'b') || (String[i] == 'f') || (String[i] == 'p') || (String[i] == 'v'))
-		{
-			String.at(i) = '1';
-		}
-		else if((String[i] == 'c') || (String[i] == 'g') || (String[i] == 'j') || (String[i] == 'k') || (String[i] == 'q') || (String[i] == 's') || (String[i] == 'x') || (String[i] == 'z'))
-		{
-			String.at(i) = '2';
-		}
-		else if ((String[i] == 'd') || (String[i] == 't'))
-		{
-			String.at(i) = '3';
-		}
-		else if (String[i] == 'l')
-		{
-			String.at(i) = '4';
-		}
-		else if ((String[i] == 'm') || (String[i] == 'n'))
-		{
-			String.at(i) = '5';
-		}
-		else if (String[i] == 'r')
-		{
-			String.at(i) = '6';
-		}
-		std::cout << String[i];
-	}
-	std::cout << std::endl;
-
-	for (size_t i = 0; (i + 1) < size(String); ++i) {
-		if (String[i] == String[i + 1]) 
-		{
-			std::cout << "Duplicate value: " << String[i] << "\n";
-			String.erase(i, 1);
-		}
+		Buffer.push_back('0');
 	}
 
-
-	if (String.size() > 3)
-	{
-		while (String.size() > 3)
-		{
-			// Пока строка больше 3 символов
-			String.pop_back();  // удаляем последний элемент
-		}
-	}
-	else
-		while (String.size() <= 3)
-	{
-		// Пока строка меньше 3 символов
-		String.push_back('0');  // добавляем 0
-	}
-	Soundex += String.front();
-
+	Soundex += Buffer;
 	std::cout << Soundex << std::endl;
-	//for (size_t i = 0; i+1 != String.size(); ++i) //  
-	//{
-	//	if (String[i+1] == String[i])
-	//	{
-	//		
-	//		std::cout << String[i]; 
-	//		//String.erase(i, 1);
-	//	}
-	//	std::cout << String[i];
-	//}
-
-	//std::cout << (Soundex += Buffer) << std::endl;
-	////Buffer.insert('s', 1, 2);
-	//std::cout << Buffer << std::endl;
-
 }
