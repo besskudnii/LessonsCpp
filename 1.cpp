@@ -573,6 +573,7 @@ void RemoveDublicateDigits(std::string& str)
 int main()
 {
 	std::string String = "test12tbakerhtiqotutwty";
+
 	std::string Soundex;
 
 	if (String.empty())
@@ -601,6 +602,5 @@ int main()
 	}
 
 	Soundex += Buffer;
-
 	std::cout << Soundex << std::endl;
 }
