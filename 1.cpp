@@ -3,18 +3,18 @@
 
 int main()
 {
-	int count, i = 1;
+	size_t count, i = 1;
 	size_t x;
 	std::vector<int> guest, permutation, seats;
 	std::cin >> count;
-	while (count != guest.size())
+	while (guest.size() < count)
 	{
 		std::cin >> x;
 		guest.push_back(x);
 		seats.push_back(i++);
 	}
 	permutation = guest;
-	for (int i = 0; i != guest.size(); ++i)
+	for (int i = 0; i < guest.size(); ++i)
 	{
 		permutation[guest[i] - 1] = seats[i];
 	}
