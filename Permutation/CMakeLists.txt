@@ -1,0 +1,1 @@
+add_executable(Permutation 1.cpp)

@@ -1,5 +1,10 @@
-cmake_minimum_required(VERSION 3.25)
+cmake_minimum_required(VERSION 3.24)
 project(LessonsCPP CXX) 
 
 add_subdirectory(First)
 add_subdirectory(Minesweeper)
+add_subdirectory(ArgMax)
+add_subdirectory(Palindrome)
+add_subdirectory(Permutation)
+add_subdirectory(ReverseVector)
+add_subdirectory(Soundex)

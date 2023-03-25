@@ -7,6 +7,7 @@ int main()
 {
 	int rows, cols, xmine, ymine, minesnum;
 	std::cin >> rows >> cols;
+
 	// создаЄм матрицу matrix из m строк, кажда€ из которых Ч вектор из n нулей
 	std::vector<std::vector<char>> Minesweeper(rows, std::vector<char>(cols));
 	for (int i = 0; i != rows; ++i)

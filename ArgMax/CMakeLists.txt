@@ -1,0 +1,1 @@
+add_executable(ArgMax 1.cpp)
