@@ -1,1 +1,1 @@
-add_executable(ArgMax 1.cpp)
+add_executable(ArgMax "ArgMax.cpp")

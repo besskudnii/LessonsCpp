@@ -1,1 +1,1 @@
-add_executable(First 1.cpp)
+add_executable(Password "Password.cpp")

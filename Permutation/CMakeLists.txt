@@ -1,1 +1,1 @@
-add_executable(Permutation 1.cpp)
+add_executable(Permutation "Permutation.cpp")
