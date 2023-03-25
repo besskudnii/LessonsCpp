@@ -57,7 +57,7 @@ int main()
 	std::string Soundex;
 
 	if (String.empty())
-		return;
+		return 0;
 
 	Soundex += String.front();
 	
