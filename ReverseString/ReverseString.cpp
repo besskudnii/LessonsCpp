@@ -3,6 +3,72 @@
 #include <vector>
 #include <algorithm>
 
+
+void StringSwap(char& left, char& right);
+
+void StringReverse(char* ss);
+void WordReverse(char* ss);
+void SwapString(char& CharLeft, char& CharRight)  /*Процедура переворачивает строку непосредственно в буфере*/
+{
+	char temp = CharLeft;
+	CharLeft = CharRight;
+	CharRight = temp;
+}
+void StringSwap(char& left, char& right)
+{
+}
+void StringReverse(char* ss)
+{
+	int StringCount = 0;
+	while (ss[StringCount] != '\0') StringCount++;
+	for (int i = 0, StringEnd = StringCount - 1; i < StringEnd; ++i, --StringEnd)
+	{
+		StringSwap(ss[i], ss[StringEnd]);
+	}
+	std::cout << ss << std::endl;
+}
+
+void WordReverse(char* ss)
+{
+	int StringCount = 0;
+	while (ss[StringCount] != '\0') StringCount++;
+	StringReverse(ss);
+	for (int i = 0, SpaceLast = 0, ii = 0, WordBegin = 0; i <= StringCount; ++i)
+	{
+		if (ss[i] == ' ')
+		{
+			SpaceLast = i;
+			for (int temp = 0, StringEnd = i - 1, ii = WordBegin; ii < StringEnd; ++ii, --StringEnd)
+			{
+				StringSwap(ss[ii], ss[StringEnd]);
+				WordBegin = SpaceLast + 1;
+			}
+		}
+
+		else if (i == StringCount)
+		{
+			for (int ii = SpaceLast + 1, temp = 0, StringEnd = i - 1; ii < StringEnd; ++ii, --StringEnd)
+			{
+				StringSwap(ss[ii], ss[StringEnd]);
+			}
+		}
+	}
+	std::cout << ss << std::endl;
+}
+
+int main()
+{
+	setlocale(LC_ALL, "ru");
+
+	char string[] = "мама мыла раму";
+	//	StringReverse(string);
+	WordReverse(string);
+	return 0;
+}
+
+
+
+
 /*шаблон функции меняет любые типы местамги*/
 
 //template <typename string>
@@ -208,63 +274,6 @@
 // Пример.
 // "Hello" -> "olleH" 
 
-void StringSwap(char& left, char& right);
-void StringReverse(char* ss);
-void WordReverse(char* ss);
-void SwapString(char& CharLeft, char& CharRight)  /*Процедура переворачивает строку непосредственно в буфере*/
-{
-	char temp = CharLeft;
-	CharLeft = CharRight;
-	CharRight = temp;
-}
-void StringReverse(char* ss)
-{
-int StringCount = 0;
-while (ss[StringCount] != '\0') StringCount++;
-for (int i = 0, StringEnd = StringCount - 1; i < StringEnd; ++i, --StringEnd)
-{
-	StringSwap(ss[i], ss[StringEnd]);
-	}
-std::cout << ss << std::endl;
-}
-
-void WordReverse(char* ss)
-{
-int StringCount = 0;
-while (ss[StringCount] != '\0') StringCount++;
-StringReverse(ss);
-for (int i = 0, SpaceLast = 0, ii = 0, WordBegin = 0; i <= StringCount; ++i)
-{
-		if (ss[i] == ' ')
-		{
-			SpaceLast = i;
-			for (int temp = 0, StringEnd = i - 1, ii = WordBegin; ii < StringEnd; ++ii, --StringEnd)
-			{
-				StringSwap(ss[ii], ss[StringEnd]);
-				WordBegin = SpaceLast + 1;
-			}
-		}
-
-		else if (i == StringCount)
-		{
-			for (int ii = SpaceLast + 1, temp = 0, StringEnd = i - 1; ii < StringEnd; ++ii, --StringEnd)
-			{
-				StringSwap(ss[ii], ss[StringEnd]); 
-			}
-		}
-}
-std::cout << ss << std::endl;
-}
-
-int main()
-{
-	setlocale(LC_ALL, "ru");
-
-	char string[] = "мама мыла раму";
-//	StringReverse(string);
-	WordReverse(string);
-	return 0;
-}
 
 
 /*Вычислите сумму цифр неотрицательного целого числа.*/

@@ -23,7 +23,7 @@ int main()
 	for (int i = 0; i < minesnum; i++)
 	{
 		std::cin >> xmine >> ymine;
-		Minesweeper[xmine - 1][ymine - 1] = '*';
+		Minesweeper[static_cast<std::vector<std::vector<char, std::allocator<char>>, std::allocator<std::vector<char, std::allocator<char>>>>::size_type>(xmine) - 1][static_cast<std::vector<char, std::allocator<char>>::size_type>(ymine) - 1] = '*';
 	}
 
 	while (minesnum != 0)

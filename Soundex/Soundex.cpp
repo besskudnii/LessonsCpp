@@ -2,6 +2,9 @@
 #include <string>
 #include <algorithm>
 
+
+
+
 void DeleteCharFromString(std::string& text, const std::string& vars)
 {
 	for (char ch : vars)

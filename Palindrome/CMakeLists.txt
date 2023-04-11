@@ -1,1 +1,1 @@
-add_executable(Palindrome "Palindrome.cpp")
+add_executable(Palindrome Palindrome.cpp)
