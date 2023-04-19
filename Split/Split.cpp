@@ -9,7 +9,7 @@
 //Например, Split("What_is_your_name?", '_') должна вернуть вектор из строк What, is, your и name ? .
 
 
-std::vector<std::string> split(const std::string& str, char delimiter)
+std::vector<std::string> Split(const std::string& str, char delimiter)
 {
 	std::string temp;
 	std::vector<std::string> result;
