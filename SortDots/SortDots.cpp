@@ -19,25 +19,24 @@
 void InsertionSort(std::vector<std::pair<int, int>>& dots)
 {
 	int dotscount = dots.size();
+
 	for (int i = 1; i < dotscount; i++)
 	{
+		if ((abs(dots[i].first) < 100) && (abs(dots[i].second) < 100))
+		{	
 		std::pair<int, int> key = dots[i];
 		int j = i - 1;
-		int x = dots[i].first;
-		int y = dots[i].second;
 		double lengthnext = sqrt((dots[i].first * dots[i].first) + (dots[i].second * dots[i].second));
 		double lengthprev = sqrt((dots[j].first * dots[j].first) + (dots[j].second * dots[j].second));
 
-		while (j >= 0 && sqrt((dots[i].first * dots[i].first) + (dots[i].second * dots[i].second)) < sqrt((dots[j].first * dots[j].first) + (dots[j].second * dots[j].second)))
+		while (j >= 0 && abs(dots[i].first)<100 && abs(dots[i].second) < 100 && lengthnext < lengthprev)
 		{ 
 			dots[j + 1] = dots[j];
 			j--;
 		}
 		dots[j + 1] = key;
-
+		}
 	}
-	 
-
 }
  
 
@@ -55,11 +54,8 @@ for (int i = 0; i < dotscount; ++i)
 
 int main()
 {
-	int x, y;
-
 	std::vector<std::pair<int, int>> dots = { {5, 9}, {5, 1}, {5, 2}, {4, 9}, {3, 2}, {3, 7} };
 	InsertionSort(dots);
-
 	for (std::pair<int,int> dot : dots)
 	{
 		std::cout << dot.first << ' ' << dot.second << std::endl;
