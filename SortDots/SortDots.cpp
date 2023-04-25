@@ -22,14 +22,14 @@ void InsertionSort(std::vector<std::pair<int, int>>& dots)
 
 	for (int i = 1; i < dotscount; i++)
 	{
-		if ((abs(dots[i].first) < 100) && (abs(dots[i].second) < 100))
+		if ((abs(dots[i].first) < 100) && (abs(dots[i].second) < 100) && (dotscount < 100))
 		{	
 		std::pair<int, int> key = dots[i];
 		int j = i - 1;
 		double lengthnext = sqrt((dots[i].first * dots[i].first) + (dots[i].second * dots[i].second));
 		double lengthprev = sqrt((dots[j].first * dots[j].first) + (dots[j].second * dots[j].second));
 
-		while (j >= 0 && abs(dots[i].first)<100 && abs(dots[i].second) < 100 && lengthnext < lengthprev)
+		while (j >= 0 && lengthnext < lengthprev)
 		{ 
 			dots[j + 1] = dots[j];
 			j--;
