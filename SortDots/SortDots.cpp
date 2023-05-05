@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <cmath>
 #include <utility>
+#include <list>
 
 
 //Сортировка точек
@@ -15,24 +16,49 @@
 //Выведите через пробел кординаты точек в порядке возрастания расстояний до начала координат.После каждой пары координат печатайте перевод строки.
 
 
+using Point = std::pair<int, int>;
+constexpr int Count = 100;
+
+void SortDots(std::vector<Point>& dots)
+{
+	std::vector<std::list<Point>> _sortPoints;
+	_sortPoints.resize(Count * Count);
+
+	for (const Point& p : dots)
+	{
+		_sortPoints[std::abs(p.first + p.second)].push_back(p);
+	}
+
+	dots.clear();
+	for (auto& points : _sortPoints)
+	{
+		for (auto& p : points)
+		{
+			dots.push_back(p);
+		}
+	}
+}
+
 
 void InsertionSort(std::vector<std::pair<int, int>>& dots)
 {
-	int dotscount = dots.size();
+	int dotsCount = dots.size();
 
-	for (int i = 1; i < dotscount; i++)
+	for (int i = 1; i < dotsCount; i++)
 	{
-		if ((abs(dots[i].first) < 100) && (abs(dots[i].second) < 100) && (dotscount < 100))
+		if ((abs(dots[i].first) < 100) && (abs(dots[i].second) < 100) && (dotsCount < 100))
 		{	
 		std::pair<int, int> key = dots[i];
 		int j = i - 1;
-		double lengthnext = sqrt((dots[i].first * dots[i].first) + (dots[i].second * dots[i].second));
-		double lengthprev = sqrt((dots[j].first * dots[j].first) + (dots[j].second * dots[j].second));
-
-		while (j >= 0 && lengthnext < lengthprev)
+		double lengthNext = sqrt((dots[i].first * dots[i].first) + (dots[i].second * dots[i].second));
+		double lengthPrev = sqrt((dots[j].first * dots[j].first) + (dots[j].second * dots[j].second));
+		if (lengthNext < lengthPrev)
 		{ 
-			dots[j + 1] = dots[j];
-			j--;
+			while (j >= 0)
+			{ 
+				dots[j + 1] = dots[j];
+				j--;
+			}
 		}
 		dots[j + 1] = key;
 		}
