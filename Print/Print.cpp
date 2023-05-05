@@ -28,7 +28,7 @@ void Print(const T& container, const std::string& delimiter)
     for (auto it = container.begin(); it != container.end(); ++it)
     {
         std::cout << *it;
-        if (it < container.end()-1)
+        if (it != container.end()-1)
         {
             std::cout << delimiter;
         }
