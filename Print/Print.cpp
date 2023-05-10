@@ -12,7 +12,7 @@ void Print(const T& container, const std::string& delimiter)
     for (auto it = std::begin(container); it != std::end(container); ++it)
     {
         std::cout << *it;
-        if (it < std::end(container) -1)
+        if (it < container.end()-1)
         {
             std::cout << delimiter;
         }
