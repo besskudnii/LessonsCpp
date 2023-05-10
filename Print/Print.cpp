@@ -1,34 +1,18 @@
 ﻿#include <iostream>
 #include <vector>
+
 #include <array>
-#include <deque>
-#include <list>
-
-#include <iostream>
 #include <iterator>
-
-//template<typename Container>
-//void Print(const Container& container, const std::string& delimiter)
-//{
-//    std::copy(container.begin(), container.end(), std::ostream_iterator<typename Container::value_type>(std::cout, delimiter.c_str()));
-//    std::cout << std::endl;
-//}
-
-
-#include <iostream>
-#include <vector>
+ 
+ 
 
 template <typename T>
 void Print(const T& container, const std::string& delimiter)
 {
-    if (container.size() == 0)
-    {
-        std::cout << "";
-    }
-    for (auto it = container.begin(); it != container.end(); ++it)
+    for (auto it = std::begin(container); it != std::end(container); ++it)
     {
         std::cout << *it;
-        if (it < container.end()-1)
+        if (it < std::end(container) -1)
         {
             std::cout << delimiter;
         }
