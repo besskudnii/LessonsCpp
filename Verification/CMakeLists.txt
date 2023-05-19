@@ -1,1 +1,1 @@
-add_executable(Print "Verification.cpp")
+add_executable(Verification "Verification.cpp")
