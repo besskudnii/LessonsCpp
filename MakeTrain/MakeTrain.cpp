@@ -25,25 +25,21 @@
 #include <string>
 #include <list>
 #include <array>
-
+#include <iterator>
  
-void MakeTrain()
-{
-
-}
-int main()
+void main()
 {
     std::list<int> Wagons;
     std::string Operation;
     int NumberWagon;
-    std::cin >> Operation >> NumberWagon;
+    std::cin >> Operation >> NumberWagon;  
 
-    for (auto iter = Wagons.begin(); iter != Wagons.end(); ) {
-    
- 
         if (Operation == "-left") 
         {
-            Wagons.pop_front();
+            auto WagonBegin = Wagons.begin();
+            auto WagonEnd = Wagons.begin();     
+            std::advance(WagonEnd, NumberWagon);
+            Wagons.erase(WagonBegin, WagonEnd);
         }
         else if (Operation == "+left")
         {
@@ -51,14 +47,17 @@ int main()
         }
         else if (Operation == "-right")
         {
-            Wagons.pop_back();
+           auto WagonBegin = Wagons.end();
+           std::advance(WagonBegin, -NumberWagon);
+           Wagons.erase(WagonBegin, Wagons.end());
         }
         else if (Operation == "+right")
         {
             Wagons.push_back(NumberWagon);
         }
-
-
+    for (auto Number : Wagons)
+    {
+        std::cout << Number << ' ';
     }
-
+    std::cout << std::endl;
 }
