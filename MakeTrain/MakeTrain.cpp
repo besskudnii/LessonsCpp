@@ -23,41 +23,46 @@
 
 #include <iostream>
 #include <string>
-#include <list>
-#include <array>
-#include <iterator>
+#include <deque> 
  
-void main()
+void MakeTrain()
 {
-    std::list<int> Wagons;
-    std::string Operation;
-    int NumberWagon;
-    std::cin >> Operation >> NumberWagon;  
+    std::deque<int> Train;
+    std::string operation;
+    int numberwagon;
+    while (std::cin >> operation >> numberwagon)
+    { 
 
-        if (Operation == "-left") 
+        if (operation == "-left") 
         {
-            auto WagonBegin = Wagons.begin();
-            auto WagonEnd = Wagons.begin();     
-            std::advance(WagonEnd, NumberWagon);
-            Wagons.erase(WagonBegin, WagonEnd);
+            auto wagonbegin = Train.begin();
+            auto wagonend = Train.begin();
+            std::advance(wagonend, numberwagon);
+            Train.erase(wagonbegin, wagonend);
+
+            for (int i = 0; i < numberwagon; ++i)
+            {
+                Train.pop_back();
+            }
         }
-        else if (Operation == "+left")
+        else if (operation == "+left")
         {
-            Wagons.push_front(NumberWagon);
+            Train.push_front(numberwagon);
         }
-        else if (Operation == "-right")
+        else if (operation == "-right")
         {
-           auto WagonBegin = Wagons.end();
-           std::advance(WagonBegin, -NumberWagon);
-           Wagons.erase(WagonBegin, Wagons.end());
+           auto wagonbegin = Train.end();
+           std::advance(wagonbegin, -numberwagon);
+           Train.erase(wagonbegin, Train.end());
         }
-        else if (Operation == "+right")
+        else if (operation == "+right")
         {
-            Wagons.push_back(NumberWagon);
+            Train.push_back(numberwagon);
         }
-    for (auto Number : Wagons)
+    }
+    for (const auto& number : Train)
     {
-        std::cout << Number << ' ';
+        std::cout << number << " ";
     }
     std::cout << std::endl;
 }
