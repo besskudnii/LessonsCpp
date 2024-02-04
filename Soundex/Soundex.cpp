@@ -15,7 +15,7 @@ void DeleteCharFromString(std::string& text, const std::string& vars)
 
 void ChangeCharToDigit(std::string& str, const std::string& chars, char number)
 {
-	for (auto it = str.begin(); it != str.end(); ++it) //непонятно
+	for (auto it = str.begin(); it != str.end(); ++it) 
 	{
 		if (chars.find(*it) != std::string::npos)
 		{

@@ -20,49 +20,88 @@
 //-right 1
  
 //3 1
+//
+//#include <iostream>
+//#include <string>
+//#include <deque> 
+//#include <iterator> 
+// 
+//void MakeTrain()
+//{
+//    std::deque<int> Train;
+//    std::string operation;
+//    size_t wagonNumber;
+//    while (std::cin >> operation >> wagonNumber)
+//    { 
+//
+//        if (operation == "-left") 
+//        {
+//            wagonNumber = std::min(wagonNumber, Train.size());
+//            for (size_t i = 0; i < wagonNumber; ++i)
+//            {
+//                Train.pop_front();
+//            }
+//        }
+//        else if (operation == "+left")
+//        {
+//            Train.push_front(wagonNumber);
+//        }
+//        else if (operation == "-right")
+//        {
+//            wagonNumber = std::min(wagonNumber, Train.size());
+//           for (size_t i = 0; i < wagonNumber; ++i)
+//           {
+//               Train.pop_back();
+//           }
+//        }
+//        else if (operation == "+right")
+//        {
+//            Train.push_back(wagonNumber);
+//        }
+//    }
+//    for (const auto& number : Train)
+//    {
+//        std::cout << number << " ";
+//    }
+//    std::cout << std::endl;
+//}
 
-#include <iostream>
-#include <string>
-#include <deque> 
- 
-void MakeTrain()
-{
-    std::deque<int> Train;
-    std::string operation;
-    int numberwagon;
-    while (std::cin >> operation >> numberwagon)
-    { 
-
-        if (operation == "-left") 
-        {
-            auto wagonbegin = Train.begin();
-            auto wagonend = Train.begin();
-            std::advance(wagonend, numberwagon);
-            Train.erase(wagonbegin, wagonend);
-
-            for (int i = 0; i < numberwagon; ++i)
-            {
-                Train.pop_back();
-            }
-        }
-        else if (operation == "+left")
-        {
-            Train.push_front(numberwagon);
-        }
-        else if (operation == "-right")
-        {
-           auto wagonbegin = Train.end();
-           std::advance(wagonbegin, -numberwagon);
-           Train.erase(wagonbegin, Train.end());
-        }
-        else if (operation == "+right")
-        {
-            Train.push_back(numberwagon);
-        }
-    }
-    for (const auto& number : Train)
-    {
-        std::cout << number << " ";
-    }
-    std::cout << std::endl;
-}
+//
+//void MakeTrain2()
+//{
+//    std::deque<int> Train;
+//    std::string operation;
+//    size_t wagonNumber;
+//    while (std::cin >> operation >> wagonNumber)
+//    {
+//
+//        if (operation == "-left")
+//        {
+//            wagonNumber = std::min(wagonNumber, Train.size());
+//            auto wagonBegin = Train.begin();
+//            auto wagonEnd = Train.begin();
+//            std::advance(wagonEnd, wagonNumber);
+//            Train.erase(wagonBegin, wagonEnd);
+//        }
+//        else if (operation == "+left")
+//        {
+//            Train.push_front(wagonNumber);
+//        }
+//        else if (operation == "-right")
+//        {
+//            wagonNumber = std::min(wagonNumber, Train.size());
+//            auto wagonBegin = Train.end();
+//            std::advance(wagonBegin, -wagonNumber);
+//            Train.erase(wagonBegin, Train.end());
+//        }
+//        else if (operation == "+right")
+//        {
+//            Train.push_back(wagonNumber);
+//        }
+//    }
+//    for (const auto& number : Train)
+//    {
+//        std::cout << number << " ";
+//    }
+//    std::cout << std::endl;
+//}
